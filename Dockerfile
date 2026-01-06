@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 
-FROM alpine:3.18.4@sha256:eece025e432126ce23f223450a0326fbebde39cdf496a85d8c016293fc851978 AS build-base
+FROM alpine:3.23.0@sha256:51183f2cfa6320055da30872f211093f9ff1d3cf06f39a0bdb212314c5dc7375 AS build-base
 
 ARG TARGETARCH
 
@@ -28,9 +28,9 @@ FROM build-base AS ldns
 
 WORKDIR /src
 
-ARG LDNS_VERSION=1.8.4
+ARG LDNS_VERSION=1.9.0
 # https://nlnetlabs.nl/downloads/ldns/ldns-1.8.3.tar.gz.sha256
-ARG LDNS_SHA256="838b907594baaff1cd767e95466a7745998ae64bc74be038dccc62e2de2e4247"
+ARG LDNS_SHA256="abaeed2858fbea84a4eb9833e19e7d23380cc0f3d9b6548b962be42276ffdcb3"
 
 ADD https://nlnetlabs.nl/downloads/ldns/ldns-${LDNS_VERSION}.tar.gz ldns.tar.gz
 
@@ -104,8 +104,8 @@ FROM scratch AS final
 COPY --from=build-base /lib/ld-musl*.so.1 /lib/
 COPY --from=build-base /usr/lib/libgcc_s.so.1 /usr/lib/
 COPY --from=build-base /usr/lib/libnghttp2.so* /usr/lib/
-COPY --from=build-base /lib/libcrypto.so.3 /lib/libssl.so.3 /lib/
-COPY --from=build-base /usr/lib/libsodium.so.23 /usr/lib/libevent-2.1.so.7 /usr/lib/libexpat.so.1 /usr/lib/
+COPY --from=build-base /usr/lib/libcrypto.so.3 /usr/lib/libssl.so.3 /lib/
+COPY --from=build-base /usr/lib/libsodium.so.26 /usr/lib/libevent-2.1.so.7 /usr/lib/libexpat.so.1 /usr/lib/
 COPY --from=build-base /etc/ssl/ /etc/ssl/
 COPY --from=build-base /etc/passwd /etc/group /etc/
 
