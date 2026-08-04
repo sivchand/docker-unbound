@@ -28,9 +28,9 @@ FROM build-base AS ldns
 
 WORKDIR /src
 
-ARG LDNS_VERSION=1.9.0
+ARG LDNS_VERSION=1.9.2
 # https://nlnetlabs.nl/downloads/ldns/ldns-1.8.3.tar.gz.sha256
-ARG LDNS_SHA256="abaeed2858fbea84a4eb9833e19e7d23380cc0f3d9b6548b962be42276ffdcb3"
+ARG LDNS_SHA256="b524fa21994b6e834200ceb8c27f1b84bda5982fe35706f058196c079db94d5d"
 
 ADD https://nlnetlabs.nl/downloads/ldns/ldns-${LDNS_VERSION}.tar.gz ldns.tar.gz
 
@@ -59,9 +59,9 @@ FROM build-base AS unbound
 
 WORKDIR /src
 
-ARG UNBOUND_VERSION=1.25.2
+ARG UNBOUND_VERSION=1.26.0
 # https://nlnetlabs.nl/downloads/unbound/unbound-1.18.0.tar.gz.sha256
-ARG UNBOUND_SHA256="0d92275c703d5f5f8baba3dab22117dd8c29b495588a5c229768ed6581566600"
+ARG UNBOUND_SHA256="77458a7156e275c0b7b17fabcb357cb12445d95cfcb26fb9bb7d5ecba45e0b63"
 
 ADD https://nlnetlabs.nl/downloads/unbound/unbound-${UNBOUND_VERSION}.tar.gz unbound.tar.gz
 
